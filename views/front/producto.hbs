@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{> head}}
+</head>
+
+<body>
+{{> nav}}
+<section class="single-product">
+    <div class="container mt-5">
+        <div class="row mb-5">
+            <div class="col-md-5">
+                <img src='{{data.imagen}}' alt='' class="img-fluid" />
+            </div>
+            <div class="col-md-7">
+                <div class="single-product-details">
+                    <h2>{{data.nombre}}</h2>
+                    <p class="product-price">{{dolarApeso data.precio}}</p>
+
+                    <p class="mt-2">
+                        {{data.descripcion}}
+                    </p>
+
+                    
+
+                    <a href="mailto:comprar@comprar.com?subject=interes en el producto {{data.nombre}} ID: {{data.id}}" class="btn btn-info mt-20">Comprar</a>
+                    
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+{{> footer}}
+
+</body>
+</html>

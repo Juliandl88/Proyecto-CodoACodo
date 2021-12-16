@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    {{> head}}
+</head>
+
+<body>
+
+{{> nav}}
+
+
+
+    <div class="px-4 py-5 text-center bg-primary bg-gradient text-light">
+        <h1 class="display-5 fw-bold ">{{titulo}}</h1>
+        <div class="col-lg-6 mx-auto">
+            <p class="lead mb-4 text-light">Descripcion corta de lo que trata el negocio</p>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <a href="/contacto" class="btn btn-dark btn-lg px-4">Contacto</a>
+            </div>
+        </div>
+    </div>
+
+
+    <section class="products section">
+        <div class="container">
+            <div class="row">
+                <div class="title text-center mt-3" id="productos">
+                    <h2 class="fs-1">Productos</h2>
+                </div>
+            </div>
+            <div class="row mb-3">
+                {{#if data}}
+                {{#each data}}
+                <div class="col-md-3">
+                    <div class="product-item">
+                        <div class="product-thumb">
+
+                            <img class="img-fluid" src="{{imagen}}" alt="product-img" />
+
+                            <div class="preview-meta">
+                                <ul>
+                                    <li>
+                                        <span data-bs-toggle="modal" data-bs-target="#product-modal-{{id}}">
+                                            <i class="bi bi-search"></i>
+                                        </span>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="product-content">
+                            <h4><a href="">{{nombre}}</a></h4>
+                            <p class="price">$ {{dolarApeso precio}}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal product-modal fade" id="product-modal-{{id}}" data-bs-backdrop="static"
+                    data-bs-keyboard="false" tabindex="-1" aria-labelledby="product-modal" aria-hidden="true">
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><i
+                            class="bi bi-x"></i></button>
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-8 col-sm-6 col-xs-12">
+                                        <div class="modal-image">
+                                            <img class="img-fluid" src="{{imagen}}" alt="product-img" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6 col-xs-12">
+                                        <div class="product-short-details">
+                                            <h2 class="product-title">{{nombre}}</h2>
+                                            <p class="product-price">$ {{dolarApeso precio}}</p>
+                                            <p class="product-short-description">
+                                                {{descripcion}}
+                                            </p>
+
+                                            <a href="/producto/{{id}}" class="btn btn-transparent">Ver detalles del
+                                                producto</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+                {{else}}
+                <h2>¡Lo siento! no tenemos productos actualmente</h2>
+                {{/if}}
+
+            </div>
+        </div>
+    </section>
+
+
+
+{{> footer}}
+</body>
+
+</html>

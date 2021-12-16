@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    {{> head}}
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
+</head>
+
+<body>
+    <header>
+        {{> nav}}
+    </header>
+    <main class="container">
+
+        {{#if mensaje}}
+        <div class="alert alert-success text-center" role="alert">{{mensaje}}</div>
+        {{/if}}
+        <div class="table-responsive mt-4">
+                
+            <table class="table caption-top table-bordered">
+                <caption>Lista de productos</caption>
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col">#ID</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Imagen</th>
+                                <th scope="col" style="width: 35%">Descripcion</th>
+                                <th scope="col">Características</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">Stock </th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                
+                        <tbody id="admin-productos">
+                            {{#if data}}
+                            {{#each data}}
+                            <tr>
+                                <th scope="row">{{id}}</th>
+                                <td>{{nombre}}</td>
+                                <td><img src="/uploads/{{imagen}}" alt="imagen de"></td>
+                                <td class="descripcion">
+                                    <div>{{descripcion}}</div>
+                                </td>
+                                <td class="caracteristicas">
+                
+                                  
+                                    {{#list caracteristicas}}
+                                       {{this}}
+                                    {{/list}}
+                                  
+                                </td>
+                                <td>$ {{dolarApeso precio}} </td>
+                                <td>{{cantidad}}</td>
+                                <td>
+                                    <a href="../editar/{{id}}">Editar</a><br>
+                                    <a href="../borrar/{{id}}">Borrar</a>
+                                </td>
+                            </tr>
+                            {{/each}}
+                            {{else}} 
+                            <tr>
+                                <td colspan="7">
+                                    <p>No hay productos cargados</p>
+                                </td>
+                            </tr>
+                            {{/if}}
+                
+                          
+                        </tbody>
+                
+                    </table>
+                    <a href="/agregar" class="btn btn-info">Agregar producto</a>
+                
+                </div>
+
+    </main>
+
+
+
+    {{> footer}}
+
+    <script type="module">
+        const dataTable = new simpleDatatables.DataTable(".table", {
+            labels: {
+                info: "Mostrando {start} a {end} de {rows} productos",
+                placeholder: "Buscar...",
+                perPage: "{select} productos por página",
+                noRows: "No hay productos cargados"
+            }
+        })
+        console.log(dataTable)
+    </script>
+
+</body>
+
+</html>
